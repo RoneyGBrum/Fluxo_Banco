@@ -440,6 +440,36 @@
   ::-webkit-scrollbar{width:10px;}
   ::-webkit-scrollbar-track{background:var(--paper);}
   ::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+
+  
+/* #s11 usa um limite de largura maior que as outras seções, só para esta
+   linha do tempo de 9 etapas ter espaço confortável sem precisar rolar. */
+  #s11{max-width:1760px;}
+  .hz-timeline{position:relative;margin-top:44px;overflow-x:auto;overflow-y:visible;padding:6px 4px 20px;-webkit-overflow-scrolling:touch;}
+  .hz-timeline::-webkit-scrollbar{height:8px;}
+  .hz-row{display:flex;gap:10px;position:relative;z-index:1;padding:0 4px;}
+  .hz-track{position:absolute;left:4px;right:4px;top:50%;height:2px;background:var(--line);transform:translateY(-50%);z-index:0;}
+  .hz-track-fill{height:100%;width:100%;background:linear-gradient(to right,var(--navy),var(--amber),var(--teal),var(--mist));transform-origin:left;}
+  .js .hz-timeline .hz-track-fill{width:0%;transition:width 1.6s var(--ease);}
+  .js .hz-timeline.is-visible .hz-track-fill{width:100%;}
+  .hz-item{flex:1 1 0;min-width:76px;display:flex;flex-direction:column;align-items:center;}
+  .hz-zone{height:208px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .hz-zone--top{justify-content:flex-end;}
+  .hz-zone--bottom{justify-content:flex-start;}
+  .hz-stem{width:2px;height:14px;background:var(--line);flex-shrink:0;}
+  .hz-num{
+    width:46px;height:46px;border-radius:50%;background:var(--c,var(--navy));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;
+    font-weight:600;font-size:1rem;box-shadow:var(--shadow-sm);flex-shrink:0;position:relative;z-index:1;
+  }
+  .hz-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.86rem;color:var(--ink);line-height:1.25;}
+  .hz-desc{font-size:.74rem;color:var(--muted);line-height:1.4;margin-top:4px;}
+  .hz-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:8px;}
+  .hz-tags .pill{padding:3px 8px;font-size:.6rem;}
+  @media (max-width:640px){
+    .hz-title{font-size:.78rem;}
+    .hz-desc{font-size:.68rem;}
+  }
 </style>
 </head>
 <body>
@@ -465,11 +495,11 @@
 <main id="main">
 
 <!-- ══════════════════════════════════════════════════════════════
-     INÍCIO — CAPA (SLIDE 00)
+     INÍCIO — CAPA (SLIDE 0000)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide cover" id="s00">
   <div class="kicker">Ministério da Gestão e da Inovação em Serviços Públicos
-    <span>Secretaria de Gestão de Pessoas e de Relações de Trabalho · SE · DEPRO · CGMOP · CMOV · DGIMP</span>
+    <span>Secretaria de Gestão de Pessoas · DEPRO · CGMOP · CMOV · DGIMP</span>
   </div>
   <div class="rule"></div>
   <h1>Proposta de<br>Fluxo de Trabalho</h1>
@@ -836,62 +866,128 @@
     <span>da recepção do processo à assinatura do MoA com o Banco Mundial — soma dos prazos indicados nas Fases 1 a 4. O intervalo considera os prazos variáveis de até 15 dias (entrevista do Banco Mundial) e até 10 dias (assinatura do MoA).</span>
   </div>
 
-  <!-- Linha do tempo da síntese: 9 etapas, coloridas por fase, com agentes -->
-  <div class="steps-list" style="margin-top:44px;">
-    <!-- 1: Planejamento -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--navy)">01</div><div>
-      <div class="step-title">Planejamento</div>
-      <div class="step-desc">Setores definidos.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-se">SE</span></div>
-    </div></div>
-    <!-- 2: Oportunidades -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--navy)">02</div><div>
-      <div class="step-title">Oportunidades</div>
-      <div class="step-desc">TOR recebido.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span></div>
-    </div></div>
-    <!-- 3: Preparação -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--navy)">03</div><div>
-      <div class="step-title">Preparação</div>
-      <div class="step-desc">Edital publicado.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-dgimp">DEPRO</span></div>
-    </div></div>
-    <!-- 4: Seleção -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--amber)">04</div><div>
-      <div class="step-title">Seleção</div>
-      <div class="step-desc">Lista tríplice organizada pela comissão de seleção.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--amber)">Fases 2–3</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-comissao">Comissão</span></div>
-    </div></div>
-    <!-- 5: Banco Mundial -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--teal)">05</div><div>
-      <div class="step-title">Banco Mundial</div>
-      <div class="step-desc">Candidato escolhido.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--teal)">Fase 4</span><span class="pill pill-bm">Banco Mundial</span></div>
-    </div></div>
-    <!-- 6: Formalização -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--teal)">06</div><div>
-      <div class="step-title">Formalização</div>
-      <div class="step-desc">MoA assinado.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--teal)">Fase 4</span><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span><span class="pill pill-orgao">Órgão de exercício</span></div>
-    </div></div>
-    <!-- 7: Afastamento (pós-seleção) -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--mist)">07</div><div>
-      <div class="step-title">Afastamento</div>
-      <div class="step-desc">Portaria publicada.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-orgao">Órgão de exercício</span></div>
-    </div></div>
-    <!-- 8: Intercâmbio (pós-seleção) -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--mist)">08</div><div>
-      <div class="step-title">Intercâmbio</div>
-      <div class="step-desc">Início da missão (12 meses).</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-bolsista">Bolsista</span><span class="pill pill-bm">Banco Mundial</span></div>
-    </div></div>
-    <!-- 9: Encerramento (pós-seleção) -->
-    <div class="step reveal"><div class="step-num" style="--c:var(--mist)">09</div><div>
-      <div class="step-title">Encerramento</div>
-      <div class="step-desc">Retorno do servidor / controle de prazo e fim da missão.</div>
-      <div class="tag-row"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-orgao">Órgão de exercício</span><span class="pill pill-mgi">MGI</span></div>
-    </div></div>
+  <!-- Linha do tempo da síntese: 9 etapas na HORIZONTAL, texto alternando em cima/embaixo -->
+  <div class="hz-timeline reveal">
+    <div class="hz-row">
+      <div class="hz-track"><div class="hz-track-fill"></div></div>
+
+      <!-- 1: Planejamento (texto em cima) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top">
+          <div class="hz-title">Planejamento</div>
+          <div class="hz-desc">Setores definidos.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-se">SE</span></div>
+        </div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--navy)">01</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom"></div>
+      </div>
+
+      <!-- 2: Oportunidades (texto embaixo) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top"></div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--navy)">02</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom">
+          <div class="hz-title">Oportunidades</div>
+          <div class="hz-desc">TOR recebido.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span></div>
+        </div>
+      </div>
+
+      <!-- 3: Preparação (texto em cima) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top">
+          <div class="hz-title">Preparação</div>
+          <div class="hz-desc">Edital publicado.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--navy)">Fase 1</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-dgimp">DEPRO</span></div>
+        </div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--navy)">03</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom"></div>
+      </div>
+
+      <!-- 4: Seleção (texto embaixo) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top"></div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--amber)">04</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom">
+          <div class="hz-title">Seleção</div>
+          <div class="hz-desc">Lista tríplice organizada pela comissão de seleção.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--amber)">Fases 2–3</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-comissao">Comissão</span></div>
+        </div>
+      </div>
+
+      <!-- 5: Banco Mundial (texto em cima) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top">
+          <div class="hz-title">Banco Mundial</div>
+          <div class="hz-desc">Candidato escolhido.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--teal)">Fase 4</span><span class="pill pill-bm">Banco Mundial</span></div>
+        </div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--teal)">05</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom"></div>
+      </div>
+
+      <!-- 6: Formalização (texto embaixo) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top"></div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--teal)">06</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom">
+          <div class="hz-title">Formalização</div>
+          <div class="hz-desc">MoA assinado.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--teal)">Fase 4</span><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span><span class="pill pill-orgao">Órgão de exercício</span></div>
+        </div>
+      </div>
+
+      <!-- 7: Afastamento (texto em cima) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top">
+          <div class="hz-title">Afastamento</div>
+          <div class="hz-desc">Portaria publicada.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-orgao">Órgão de exercício</span></div>
+        </div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--mist)">07</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom"></div>
+      </div>
+
+      <!-- 8: Intercâmbio (texto embaixo) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top"></div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--mist)">08</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom">
+          <div class="hz-title">Intercâmbio</div>
+          <div class="hz-desc">Início da missão (12 meses).</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-bolsista">Bolsista</span><span class="pill pill-bm">Banco Mundial</span></div>
+        </div>
+      </div>
+
+      <!-- 9: Encerramento (texto em cima) -->
+      <div class="hz-item">
+        <div class="hz-zone hz-zone--top">
+          <div class="hz-title">Encerramento</div>
+          <div class="hz-desc">Retorno do servidor / controle de prazo e fim da missão.</div>
+          <div class="hz-tags"><span class="pill pill-fase" style="--c:var(--mist)">Pós-seleção</span><span class="pill pill-orgao">Órgão de exercício</span><span class="pill pill-mgi">MGI</span></div>
+        </div>
+        <div class="hz-stem"></div>
+        <div class="hz-num" style="--c:var(--mist)">09</div>
+        <div class="hz-stem"></div>
+        <div class="hz-zone hz-zone--bottom"></div>
+      </div>
+    </div>
   </div>
 
   <!-- Resumo visual em uma linha (mesmas cores da legenda acima) -->
@@ -932,7 +1028,7 @@
 <section class="slide closing" id="s12">
   <div class="closing-icon"><svg width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 14h34a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H24l-9 8v-8H8a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z"/><circle cx="18" cy="26" r="1.6" fill="currentColor" stroke="none"/><circle cx="27" cy="26" r="1.6" fill="currentColor" stroke="none"/><circle cx="36" cy="26" r="1.6" fill="currentColor" stroke="none"/></svg></div>
   <h2>Estamos à disposição para esclarecer dúvidas.</h2>
-  <p class="lead">Secretaria de Gestão de Pessoas e de Relações de Trabalho — SE · DEPRO · CGMOP · CMOV · DGIMP</p>
+  <p class="lead">Secretaria de Gestão de Pessoas · DEPRO · CGMOP · CMOV · DGIMP</p>
   <div class="meta">Proposta de Fluxo de Trabalho · WBG Fellowship Program · Brasília/DF, julho de 2026</div>
   <span class="rgb-mark">RGB - ZDB</span>
 </section>
