@@ -2,7 +2,7 @@
 <!--
 ════════════════════════════════════════════════════════════════════════
   PROPOSTA DE FLUXO DE TRABALHO — WBG FELLOWSHIP PROGRAM · MGI
-  Versão Revisada (7 Fases + Ajustes de Governança e Modal Interativo)
+  Versão 2.1 — 7 Fases, Governança Integrada e Mapeamento de Rotas / Retornos
 ════════════════════════════════════════════════════════════════════════
 -->
 <html lang="pt-BR">
@@ -17,13 +17,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   /* ══════════════════════════════════════════════════════════════
-     PAINEL DE CORES
+     PAINEL DE CORES (PALETA HARMONIZADA EM TODO O DOCUMENTO)
      ══════════════════════════════════════════════════════════════ */
   :root{
     --navy:#16234A;   /* azul-marinho — cor da Fase 1 e da coordenação (SE)       */
     --blue:#3D5C93;   /* azul médio   — cor da Fase 2 e da execução interna MGI   */
-    --amber:#BD6A2E;  /* laranja/âmbar— cor da Fase 3, decisões e destaques       */
-    --teal:#3E7568;   /* verde-azulado— cor da Fase 4 e do Banco Mundial          */
+    --amber:#BD6A2E;  /* laranja/âmbar— cor da Fase 3, decisões e retornos        */
+    --teal:#3E7568;   /* verde-azulado— cor da Fase 4, avanços e do Banco Mundial */
     --sand:#A6916A;   /* areia/dourado— cor da Fase 5                             */
     --mist:#6C7CA6;   /* azul acinzentado — cor da Fase 6 e pós-seleção           */
 
@@ -378,60 +378,60 @@
     .hz-desc{font-size:.68rem;}
   }
 
-  /* ---------- FLUXOGRAMA DIDÁTICO E DINÂMICO (SLIDE 14) ---------- */
+  /* ══════════════════════════════════════════════════════════════
+     NOVO SLIDE 14: FLUXOGRAMA DIDÁTICO COM IDAS E VINDAS
+     ══════════════════════════════════════════════════════════════ */
   #s14{max-width:1400px;}
-  .flowchart-container{
-    margin-top:36px;
-    display:flex;flex-direction:column;gap:24px;
-    position:relative;
+  .route-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    margin-top:32px;position:relative;
   }
-  .flowchart-row{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-    position:relative;
-  }
-  .flow-card-node{
+  .route-card{
     background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);
-    padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px;
-    position:relative;transition:all .35s var(--ease);border-top:4px solid var(--c,var(--navy));
+    padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:12px;
+    position:relative;transition:all .35s var(--ease);border-left:5px solid var(--c,var(--navy));
   }
-  .flow-card-node:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--c,var(--navy));}
-  .flow-node-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-  .flow-node-badge{
+  .route-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--c,var(--navy));}
+  .route-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .route-step-id{
     font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:700;
     color:#fff;background:var(--c,var(--navy));padding:4px 10px;border-radius:6px;
   }
-  .flow-node-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.2;}
-  .flow-node-desc{font-size:.86rem;color:var(--muted);line-height:1.5;}
-  .flow-node-actors{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px;border-top:1px dashed var(--line);}
+  .route-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.2;}
+  .route-desc{font-size:.86rem;color:var(--muted);line-height:1.5;}
   
-  .flow-conn-right{
-    position:absolute;right:-18px;top:50%;transform:translateY(-50%);
-    font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.2rem;color:var(--muted);
-    z-index:2;pointer-events:none;
+  /* Seção de rotas, avanços e retornos (Idas e Vindas) */
+  .route-paths{
+    margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);
+    display:flex;flex-direction:column;gap:8px;font-size:.8rem;font-family:'Inter',sans-serif;
   }
-  .flow-conn-down{
-    display:flex;justify-content:flex-end;padding-right:16%;
-    font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.4rem;color:var(--muted);
-    line-height:0.8;margin:-8px 0;
-  }
-  .flow-transversal-box{
-    background:rgba(22,35,74,.04);border:1px dashed var(--navy);border-radius:var(--radius-md);
-    padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  }
-  .flow-transversal-info h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);}
-  .flow-transversal-info p{font-size:.85rem;color:var(--muted);margin-top:2px;}
+  .path-item{display:flex;align-items:flex-start;gap:8px;line-height:1.35;}
+  .path-icon{font-weight:800;flex-shrink:0;width:18px;text-align:center;}
+  .path-advance{color:var(--teal);font-weight:600;}
+  .path-return{color:var(--amber);font-weight:600;background:rgba(189,106,46,.08);padding:6px 8px;border-radius:6px;border-left:2px solid var(--amber);}
   
-  @media (max-width:960px){
-    .flowchart-row{grid-template-columns:1fr;gap:18px;}
-    .flow-conn-right{display:none;}
-    .flow-conn-down{justify-content:center;padding:0;margin:0;}
+  .route-actors{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+  
+  .route-transversal{
+    margin-top:24px;background:rgba(22,35,74,.03);border:1px dashed var(--navy);
+    border-radius:var(--radius-md);padding:18px 24px;display:flex;align-items:center;
+    justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .route-transversal h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);}
+  .route-transversal p{font-size:.85rem;color:var(--muted);margin-top:4px;}
+
+  @media (max-width:1024px){
+    .route-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    .route-grid{grid-template-columns:1fr;}
   }
 
-  /* ---------- encerramento ---------- */
+  /* ---------- encerramento (SLIDE 15) — PALETA HARMONIZADA CLARA ---------- */
   .closing{background:var(--paper);color:var(--ink);align-items:center;text-align:center;}
   .closing-icon{color:var(--amber);margin-bottom:28px;}
-  .closing h2{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.4vw,2.6rem);max-width:820px;margin:0 auto;color:var(--navy);}
-  .closing .lead{color:var(--muted);margin:22px auto 0;max-width:640px;text-align:center;}
+  .closing h2{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.4vw,2.6rem);max-width:860px;margin:0 auto;color:var(--navy);line-height:1.15;}
+  .closing .lead{color:var(--muted);margin:22px auto 0;max-width:680px;text-align:center;}
   .closing .meta{margin-top:44px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);}
   .rgb-mark{
     position:absolute;bottom:26px;right:var(--pad-slide-x);font-family:'IBM Plex Mono',monospace;
@@ -496,7 +496,7 @@
   <p class="lead">Definição de papéis, responsabilidades e prazos por setor. Acompanha modelos de Edital, Termo de Referência (TOR) e Memorando de Acordo (MoA).</p>
   <div class="meta">
     <span><b>Brasília/DF</b> — Julho de 2026</span>
-    <span><b>Versão 2.0</b> — Proposta de 7 Fases para validação</span>
+    <span><b>Versão 2.1</b> — Proposta de 7 Fases para validação</span>
   </div>
   <button class="scroll-cue" data-target="#s01">
     Role para explorar
@@ -541,7 +541,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     ATORES (SLIDE 03) — COM MELHORIA (a): CAIXA ABRAÇANDO E ASSINT
+     ATORES (SLIDE 03) — COM CAIXA ABRAÇANDO E ASSINT
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s03">
   <span class="watermark">03</span>
@@ -555,7 +555,6 @@
       <div class="org-box org-box--navy" style="flex:1;"><span class="org-box-label">Secretaria Executiva (SE)</span><span class="org-box-role">Coordenação institucional · interlocutora</span></div>
     </div>
     
-    <!-- Melhoria (a): Caixa maior abraçando as três menores + ASSINT à direita -->
     <div class="org-tier" style="align-items:stretch;">
       <div class="org-box org-box--blue" style="flex:2.2; display:flex; flex-direction:column; justify-content:center; background:rgba(61,92,147,.04); border:1px solid rgba(61,92,147,.22);">
         <span class="org-box-label" style="color:var(--navy); margin-bottom:12px; font-size:1.05rem;">Secretaria de Gestão de Pessoas (SGP) <span class="mono" style="font-size:.78rem; font-weight:normal; color:var(--muted); display:inline-block; margin-left:6px;">· Execução Interna MGI</span></span>
@@ -623,7 +622,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FLUXO MACRO / 7 FASES (SLIDE 05) — MELHORIA (b)
+     FLUXO MACRO / 7 FASES (SLIDE 05)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s05">
   <span class="watermark">05</span>
@@ -647,7 +646,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 1: DEFINIÇÃO DAS ÁREAS DE INTERESSE (SLIDE 06) — MELHORIA (c)
+     FASE 1: DEFINIÇÃO DAS ÁREAS DE INTERESSE (SLIDE 06)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s06">
   <span class="watermark">06</span>
@@ -663,19 +662,17 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
           <div class="step-title">Definição das Áreas de Interesse</div>
-            <div class="step-desc">Destina-se ao alinhamento estratégico das áreas de cooperação técnica, contemplando os <strong>setores prioritários,</strong> como: <strong>(I) Sustentabilidade e Infraestrutura:</strong> Clima e Meio Ambiente, Recursos Hídricos e Energia, Infraestrutura, Transporte e Mobilidade, Planejamento Urbano e Habitação, e Riscos de Desastres; <strong>(II) Desenvolvimento Social:</strong> Saúde Pública e Proteção Social; <strong>(III) Inovação e Governo Digital:</strong> Governo Digital e Transformação do Estado; <strong>(IV) Gestão Pública:</strong> Gestão de Pessoas, Compras Públicas, Estatais, Arquivos Públicos e Serviços Compartilhados.</div><div class="tag-row">
+          <div class="step-desc">Destina-se ao alinhamento estratégico das áreas de cooperação técnica, contemplando os <strong>setores prioritários,</strong> como: <strong>(I) Sustentabilidade e Infraestrutura:</strong> Clima e Meio Ambiente, Recursos Hídricos e Energia, Infraestrutura, Transporte e Mobilidade, Planejamento Urbano e Habitação, e Riscos de Desastres; <strong>(II) Desenvolvimento Social:</strong> Saúde Pública e Proteção Social; <strong>(III) Inovação e Governo Digital:</strong> Governo Digital e Transformação do Estado; <strong>(IV) Gestão Pública:</strong> Gestão de Pessoas, Compras Públicas, Estatais, Arquivos Públicos e Serviços Compartilhados.</div><div class="tag-row">
             <span class="pill pill-se">SE</span>
             <span class="pill pill-bm">Banco Mundial</span>
             <span class="pill pill-prazo">Prazo: 15 a 30 dias</span>
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--teal)">02</div>
         <div>
@@ -692,7 +689,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 2: PREPARAÇÃO E LANÇAMENTO DO EDITAL (SLIDE 07) — MELHORIA (d)
+     FASE 2: PREPARAÇÃO E LANÇAMENTO DO EDITAL (SLIDE 07)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s07">
   <span class="watermark">07</span>
@@ -708,7 +705,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -720,7 +716,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -732,7 +727,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -744,7 +738,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 4 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--amber)">04</div>
         <div>
@@ -756,7 +749,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 5 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--sand)">05</div>
         <div>
@@ -775,7 +767,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 3: INSCRIÇÕES E TRIAGEM DE CANDIDATOS (SLIDE 08) — MELHORIA (e)
+     FASE 3: INSCRIÇÕES E TRIAGEM DE CANDIDATOS (SLIDE 08)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s08">
   <span class="watermark">08</span>
@@ -791,7 +783,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -803,7 +794,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -815,7 +805,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -827,7 +816,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 4 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--amber)">04</div>
         <div>
@@ -844,7 +832,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 4: ARTICULAÇÃO E AVALIAÇÃO PELA COMISSÃO (SLIDE 09) — MELHORIA (f)
+     FASE 4: ARTICULAÇÃO E AVALIAÇÃO PELA COMISSÃO (SLIDE 09)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s09">
   <span class="watermark">09</span>
@@ -860,7 +848,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -872,7 +859,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -884,7 +870,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -896,7 +881,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 4 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--amber)">04</div>
         <div>
@@ -909,7 +893,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 5 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--sand)">05</div>
         <div>
@@ -921,7 +904,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 6 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--teal)">06</div>
         <div>
@@ -943,7 +925,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 5: COMUNICAÇÃO E PUBLICAÇÃO DOS RESULTADOS (SLIDE 10) — MELHORIA (g)
+     FASE 5: COMUNICAÇÃO E PUBLICAÇÃO DOS RESULTADOS (SLIDE 10)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s10">
   <span class="watermark">10</span>
@@ -959,7 +941,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -971,7 +952,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -983,7 +963,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -997,7 +976,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 4 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--amber)">04</div>
         <div>
@@ -1009,7 +987,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 5 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--teal)">05</div>
         <div>
@@ -1021,7 +998,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 6 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--sand)">06</div>
         <div>
@@ -1038,7 +1014,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 6: FORMALIZAÇÃO (SLIDE 11) — MELHORIA (h)
+     FASE 6: FORMALIZAÇÃO (SLIDE 11)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s11">
   <span class="watermark">11</span>
@@ -1054,7 +1030,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -1071,7 +1046,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -1083,7 +1057,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -1096,7 +1069,6 @@
           </div>
         </div>
       </div>
-      <!-- Etapa 4 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--amber)">04</div>
         <div>
@@ -1115,7 +1087,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     FASE 7: ATIVIDADES CONTÍNUAS (SLIDE 12) — MELHORIA (i)
+     FASE 7: ATIVIDADES CONTÍNUAS (SLIDE 12)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s12">
   <span class="watermark">12</span>
@@ -1131,7 +1103,6 @@
       </div>
     </div>
     <div class="steps-list">
-      <!-- Etapa 1 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--navy)">01</div>
         <div>
@@ -1140,7 +1111,6 @@
           <div class="tag-row"><span class="pill pill-mgi">MGI</span></div>
         </div>
       </div>
-      <!-- Etapa 2 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--blue)">02</div>
         <div>
@@ -1149,7 +1119,6 @@
           <div class="tag-row"><span class="pill pill-mgi">MGI</span></div>
         </div>
       </div>
-      <!-- Etapa 3 -->
       <div class="step reveal">
         <div class="step-num" style="--c:var(--mist)">03</div>
         <div>
@@ -1163,7 +1132,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     SÍNTESE (SLIDE 13) — MELHORIAS (j) e (k): READEQUAÇÃO + REMOÇÃO DO FLUXO EM LINHA
+     SÍNTESE (SLIDE 13)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s13">
   <span class="watermark">13</span>
@@ -1185,12 +1154,10 @@
     <span>Governança com papéis delimitados para cada um dos atores envolvidos.</span>
   </div>
 
-  <!-- Linha do tempo horizontal readequada para 7 marcos/fases -->
   <div class="hz-timeline reveal">
     <div class="hz-row">
       <div class="hz-track"><div class="hz-track-fill"></div></div>
 
-      <!-- Marco 1: Áreas e TOR -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top">
           <div class="hz-title">1. Escopo</div>
@@ -1203,7 +1170,6 @@
         <div class="hz-zone hz-zone--bottom"></div>
       </div>
 
-      <!-- Marco 2: Lançamento -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top"></div>
         <div class="hz-stem"></div>
@@ -1216,7 +1182,6 @@
         </div>
       </div>
 
-      <!-- Marco 3: Triagem -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top">
           <div class="hz-title">3. Triagem</div>
@@ -1229,7 +1194,6 @@
         <div class="hz-zone hz-zone--bottom"></div>
       </div>
 
-      <!-- Marco 4: Avaliação -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top"></div>
         <div class="hz-stem"></div>
@@ -1242,7 +1206,6 @@
         </div>
       </div>
 
-      <!-- Marco 5: Seleção BM -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top">
           <div class="hz-title">5. Resultados</div>
@@ -1255,7 +1218,6 @@
         <div class="hz-zone hz-zone--bottom"></div>
       </div>
 
-      <!-- Marco 6: Acordos -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top"></div>
         <div class="hz-stem"></div>
@@ -1268,7 +1230,6 @@
         </div>
       </div>
 
-      <!-- Marco 7: Missão e Relatório -->
       <div class="hz-item">
         <div class="hz-zone hz-zone--top">
           <div class="hz-title">7. Missão & Retorno</div>
@@ -1283,93 +1244,110 @@
 
     </div>
   </div>
-  <!-- Melhoria (k): Quadrinhos em linha removidos conforme instrução -->
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     NEW SLIDE: FLUXOGRAMA DIDÁTICO E DINÂMICO (SLIDE 14)
+     NOVO SLIDE 14: FLUXOGRAMA DIDÁTICO COM IDAS E VINDAS (ATIVIDADE 1)
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide" id="s14">
   <span class="watermark">14</span>
-  <span class="eyebrow reveal">14 — Fluxograma Sequencial</span>
-  <h2 class="display reveal">Jornada Operacional Completa</h2>
-  <p class="lead reveal">Representação visual e dinâmica da sequência de entregas, pontos de decisão e interlocução institucional.</p>
+  <span class="eyebrow reveal">14 — Mapeamento de Rotas e Decisões</span>
+  <h2 class="display reveal">Engenharia do Fluxo: Avanços e Ciclos de Retorno</h2>
+  <p class="lead reveal">Representação dinâmica de quem executa cada marco, os pontos críticos de validação e as possibilidades de retroalimentação (idas e vindas) no processo.</p>
 
-  <div class="flowchart-container reveal">
-    <!-- Linha 1 do Fluxograma -->
-    <div class="flowchart-row">
-      <div class="flow-card-node" style="--c:var(--navy)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--navy)">FASE 1</span><span class="mono" style="font-size:.75rem;color:var(--muted)">15–30 dias</span></div>
-        <div class="flow-node-title">Pactuação de Escopo & TOR</div>
-        <div class="flow-node-desc">Alinhamento estratégico dos setores de interesse e recepção dos Termos de Referência técnicos.</div>
-        <div class="flow-node-actors"><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span></div>
+  <div class="route-grid reveal">
+    <!-- Bloco 1 -->
+    <div class="route-card" style="--c:var(--navy)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--navy)">FASE 1</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Início</span></div>
+      <div class="route-title">Pactuação e TOR</div>
+      <div class="route-desc">Negociação técnica entre o MGI e o Banco Mundial para definição de áreas, vagas e requisitos do Termo de Referência.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: TOR validado → Início da Instrução (Fase 2)</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Divergência técnica no TOR ↩ Ajustes entre SE e BM</span></div>
       </div>
-      <div class="flow-conn-right">→</div>
-
-      <div class="flow-card-node" style="--c:var(--blue)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--blue)">FASE 2</span><span class="mono" style="font-size:.75rem;color:var(--muted)">12 dias</span></div>
-        <div class="flow-node-title">Lançamento do Edital</div>
-        <div class="flow-node-desc">Instrução processual no SEI, elaboração de regras, cadastro no Sigepe Oportunidades e divulgação.</div>
-        <div class="flow-node-actors"><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-depro">DEPRO</span><span class="pill pill-ascom">ASCOM</span></div>
-      </div>
-      <div class="flow-conn-right">→</div>
-
-      <div class="flow-card-node" style="--c:var(--amber)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--amber)">FASE 3</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Contínuo</span></div>
-        <div class="flow-node-title">Triagem de Candidatos</div>
-        <div class="flow-node-desc">Suporte a dúvidas, validação via SIAPE, relatórios Recruta.Gov e análise de requisitos eliminatórios.</div>
-        <div class="flow-node-actors"><span class="pill pill-dgimp">DGIMP</span></div>
-      </div>
+      <div class="route-actors"><span class="pill pill-se">SE</span><span class="pill pill-bm">Banco Mundial</span></div>
     </div>
 
-    <!-- Conector para linha de baixo -->
-    <div class="flow-conn-down">↓</div>
-
-    <!-- Linha 2 do Fluxograma (ordem visual da esquerda para direita) -->
-    <div class="flowchart-row">
-      <div class="flow-card-node" style="--c:var(--teal)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--teal)">FASE 4</span><span class="mono" style="font-size:.75rem;color:var(--muted)">26 dias</span></div>
-        <div class="flow-node-title">Comissão & Lista Tríplice</div>
-        <div class="flow-node-desc">Portaria de designação, briefing, avaliação cega individual e consolidação das escolhas colegiadas.</div>
-        <div class="flow-node-actors"><span class="pill pill-comissao">Comissão</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-se">SE</span></div>
+    <!-- Bloco 2 -->
+    <div class="route-card" style="--c:var(--blue)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--blue)">FASE 2</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Edital</span></div>
+      <div class="route-title">Lançamento e Publicidade</div>
+      <div class="route-desc">Modelagem do edital, cadastro em sistema, publicação oficial e mobilização dos canais de comunicação institucional.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: Edital publicado → Abertura de inscrições (Fase 3)</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Ajuste normativo ↩ Revisão conjunta DEPRO/SE</span></div>
       </div>
-      <div class="flow-conn-right">→</div>
-
-      <div class="flow-card-node" style="--c:var(--sand)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--sand)">FASE 5</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Até 15 dias</span></div>
-        <div class="flow-node-title">Seleção Internacional</div>
-        <div class="flow-node-desc">Publicação final, análise de recursos, envio ao WBG e entrevistas internacionais para definição do bolsista.</div>
-        <div class="flow-node-actors"><span class="pill pill-bm">Banco Mundial</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-se">SE</span></div>
-      </div>
-      <div class="flow-conn-right">→</div>
-
-      <div class="flow-card-node" style="--c:var(--mist)">
-        <div class="flow-node-head"><span class="flow-node-badge" style="--c:var(--mist)">FASE 6</span><span class="mono" style="font-size:.75rem;color:var(--muted)">12 Meses</span></div>
-        <div class="flow-node-title">Formalização & Missão</div>
-        <div class="flow-node-desc">Assinatura de MoA e Instrumento, Portaria no DOU, exercício internacional e entrega de relatório final.</div>
-        <div class="flow-node-actors"><span class="pill pill-assint">ASSINT</span><span class="pill pill-orgao">Órgão</span><span class="pill pill-bolsista">Servidor</span></div>
-      </div>
+      <div class="route-actors"><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-depro">DEPRO</span><span class="pill pill-ascom">ASCOM</span></div>
     </div>
 
-    <!-- Bloco Transversal -->
-    <div class="flow-transversal-box">
-      <div class="flow-transversal-info">
-        <h4>🔄 FASE 7 — Governança Transversal Contínua</h4>
-        <p>Atendimento Institucional, Atendimento Normativo e Gestão Documental integral no sistema SEI ao longo de todo o ciclo.</p>
+    <!-- Bloco 3 -->
+    <div class="route-card" style="--c:var(--amber)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--amber)">FASE 3</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Triagem</span></div>
+      <div class="route-title">Inscrição e Análise Preliminar</div>
+      <div class="route-desc">Recepção de currículos, validação de vínculos no SIAPE, relatórios Recruta.Gov e filtro de requisitos eliminatórios.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: Perfil compatível → Envio à Comissão (Fase 4)</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Incompatibilidade / Pendência ↩ Notificação ao candidato</span></div>
       </div>
-      <div style="display:flex;gap:8px;"><span class="pill pill-mgi">MGI · SGP</span><span class="pill pill-se">SE</span></div>
+      <div class="route-actors"><span class="pill pill-dgimp">DGIMP</span></div>
     </div>
+
+    <!-- Bloco 4 -->
+    <div class="route-card" style="--c:var(--teal)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--teal)">FASE 4</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Comissão</span></div>
+      <div class="route-title">Avaliação e Lista Tríplice</div>
+      <div class="route-desc">Portaria colegiada, briefing técnico, avaliação cega individual dos currículos e deliberação para formação da lista final.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: Lista definida → Publicação preliminar (Fase 5)</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Empate / Divergência ↩ Nova reunião de deliberação</span></div>
+      </div>
+      <div class="route-actors"><span class="pill pill-comissao">Comissão</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-se">SE</span></div>
+    </div>
+
+    <!-- Bloco 5 -->
+    <div class="route-card" style="--c:var(--sand)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--sand)">FASE 5</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Seleção</span></div>
+      <div class="route-title">Resultados e Entrevistas WBG</div>
+      <div class="route-desc">Julgamento de recursos, envio de perfis em inglês ao Banco Mundial, entrevistas internacionais e comunicação do bolsista.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: Candidato aprovado pelo BM → Assinaturas (Fase 6)</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Recurso deferido ↩ Revisão da lista pela DGIMP</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Não seleção internacional ↩ Reabertura de Edital</span></div>
+      </div>
+      <div class="route-actors"><span class="pill pill-bm">Banco Mundial</span><span class="pill pill-dgimp">DGIMP</span><span class="pill pill-se">SE</span></div>
+    </div>
+
+    <!-- Bloco 6 -->
+    <div class="route-card" style="--c:var(--mist)">
+      <div class="route-header"><span class="route-step-id" style="--c:var(--mist)">FASE 6</span><span class="mono" style="font-size:.75rem;color:var(--muted)">Missão</span></div>
+      <div class="route-title">Formalização e Exercício</div>
+      <div class="route-desc">Assinatura do MoA, Portaria no DOU, Instrumento de Designação, cumprimento dos 12 meses no exterior e relatório final.</div>
+      <div class="route-paths">
+        <div class="path-item"><span class="path-icon path-advance">→</span><span class="path-advance">Avanço: Ciclo concluído → Aproveitamento de boas práticas</span></div>
+        <div class="path-item"><span class="path-icon path-return">↩</span><span class="path-return">Retorno: Ajuste de cláusula no MoA ↩ Revisão ASSINT / Órgão</span></div>
+      </div>
+      <div class="route-actors"><span class="pill pill-assint">ASSINT</span><span class="pill pill-orgao">Órgão</span><span class="pill pill-bolsista">Servidor</span><span class="pill pill-se">SE</span><span class="pill pill-depro">DEPRO</span></div>
+    </div>
+  </div>
+
+  <!-- Bloco Transversal -->
+  <div class="route-transversal reveal">
+    <div>
+      <h4>🔄 FASE 7 — Governança Transversal Contínua (Em todas as etapas acima)</h4>
+      <p>Suporte Institucional, Atendimento Normativo e Gestão Documental integral no SEI, com monitoramento de prazos e mediação de conflitos.</p>
+    </div>
+    <div style="display:flex;gap:8px;"><span class="pill pill-mgi">MGI · SGP</span><span class="pill pill-se">SE</span></div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     ENCERRAMENTO (SLIDE 15) — MODIFICADO COM PALETA HARMONIZADA E FRASE IMPACTANTE
+     ENCERRAMENTO (SLIDE 15) — ATIVIDADE 2: PALETA CLARA E FRASE IMPACTANTE
      ══════════════════════════════════════════════════════════════ -->
 <section class="slide closing" id="s15">
   <div class="closing-icon"><svg width="60" height="60" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 14h34a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H24l-9 8v-8H8a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z"/><circle cx="18" cy="26" r="1.6" fill="currentColor" stroke="none"/><circle cx="27" cy="26" r="1.6" fill="currentColor" stroke="none"/><circle cx="36" cy="26" r="1.6" fill="currentColor" stroke="none"/></svg></div>
   <h2>A clareza de papéis e a padronização de procedimentos são os alicerces que transformam planejamento estratégico em excelência na gestão pública.</h2>
-  <p class="lead">Secretaria Executiva · SGP (DEPRO · CGMOP · CMOV · DGIMP) · ASSINT · ASCOM</p>
-  <div class="meta">Proposta de Governança e Processos · WBG Fellowship Program · Brasília/DF, julho de 2026</div>
+  <p class="lead">· SGP · DEPRO · CGMOP · DGIMP · </p>
+  <div class="meta">Governança e Processos · WBG Fellowship Program · Brasília/DF, julho de 2026</div>
   <span class="rgb-mark">RGB - ZDB</span>
 </section>
 
